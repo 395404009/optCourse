@@ -1,0 +1,48 @@
+说明: 学生选课系统
+http://localhost:8080/optCourse/login.jsp
+
+数据库
+url="jdbc:oracle:thin:@localhost:1621:OrclTest";
+name="system";
+password="123456";
+
+/*  学生信息表  */
+create table students(
+  stuid varchar2(10) primary key,  
+  stuname varchar2(12),
+  stupwd varchar2(20),  
+  stusex varchar2(4), 
+  stuinstitute varchar2(20) 
+);
+/*  课程信息表  */
+create table courses(
+   couid varchar2(10) primary key,
+   couname varchar2(20),
+   teacher varchar2(12),
+   credit number(3,1),
+   couexp varchar2(50)
+);
+/*  选课信息表  */
+create table stucou
+(
+   stuid varchar2(10),
+   couid varchar2(10),
+   primary key(stuid,couid),
+   foreign key(stuid) REFERENCES students(stuid),
+   foreign key(couid) REFERENCES courses(couid)
+);
+
+insert into students values('001','张三','123','1','信息工程学院');
+insert into students values('002','李四','123','1','信息工程学院');
+insert into students values('003','王五','123','0','信息工程学院');
+
+insert into courses values('1001','java课程','李老师',4,'一门优秀的编程语言');
+insert into courses values('1002','Oracle课程','王老师',3,'大型数据库');
+
+insert into stucou values('001','1001');
+insert into stucou values('002','1001');
+insert into stucou values('003','1002');
+
+select * from students;
+select * from courses;
+select * from stucou;

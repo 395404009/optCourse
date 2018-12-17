@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.wl.mapper.CouMapper" >
+
+<!--       查询所有选课 -->
+           
+       <select id="selAll" resultType="com.wl.pojo.Courses"> 
+           SELECT * FROM ( 
+　                           SELECT A.*, ROWNUM R FROM ( 
+　　　　                              SELECT * FROM COURSES 
+　　                          ) A WHERE ROWNUM &lt;= #{pageEnd}
+           ) B WHERE R &gt; #{pageStart}
+           <if test="teacher!=null and teacher!=''">
+				<bind name="teacher" value="'%'+teacher+'%'"></bind>
+				and teacher like #{teacher}
+			</if>
+           <if test="couname!=null and couname!=''">
+				<bind name="couname" value="'%'+couname+'%'"></bind>
+				and couname like #{couname}
+			</if>		
+			
+       </select>
+<!--        查询所有课程的数目 -->
+       <select id="selCount" resultType="int">
+            select count(*) from courses
+            <where>
+            <if test="teacher!=null and teacher!=''">
+				<bind name="teacher" value="'%'+teacher+'%'"></bind>
+				and teacher like #{teacher}
+			</if>
+			<if test="couname!=null and couname!=''">
+				<bind name="couname" value="'%'+couname+'%'"></bind>
+				and couname like #{couname}
+			</if>		
+		</where>
+       </select>
+<!-- 	查询该学生的选课信息 -->
+       <select id="selByStuid" resultType="com.wl.pojo.Courses">
+         SELECT * FROM ( 
+　                                    SELECT A.*, ROWNUM R FROM ( 
+　　　　                                    SELECT * FROM COURSES 
+　　                               ) A WHERE ROWNUM &lt;=#{pageEnd}
+             ) B WHERE R &gt; #{pageStart} 	
+              and couid in 
+             (select couid from (select * from stucou  where stuid=#{stuid}))
+         <if test="teacher!=null and teacher!=''">
+				<bind name="teacher" value="'%'+teacher+'%'"></bind>
+				and teacher like #{teacher}
+		</if>
+        <if test="couname!=null and couname!=''">
+				<bind name="couname" value="'%'+couname+'%'"></bind>
+				and couname like #{couname}
+	    </if>	
+       </select>
+<!--        学生选择指定课程 -->
+      <insert id="inseCouByCouidStuid">
+            insert into stucou values(#{stuid},#{couid})
+      </insert>
+
+</mapper>

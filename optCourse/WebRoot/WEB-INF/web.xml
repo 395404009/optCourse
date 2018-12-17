@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app version="3.0"
+    xmlns="http://java.sun.com/xml/ns/javaee"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd">
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>StuServlet</servlet-name>
+    <servlet-class>com.wl.servlet.StuServlet</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>CouServlet</servlet-name>
+    <servlet-class>com.wl.servlet.CouServlet</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>SelCouServlet</servlet-name>
+    <servlet-class>com.wl.servlet.SelCouServlet</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>ValidCodeServlet</servlet-name>
+    <servlet-class>com.wl.servlet.ValidCodeServlet</servlet-class>
+  </servlet>
+
+<!--  配置监听器 -->
+  <listener>
+     <listener-class>com.wl.Listener.MyListener</listener-class>
+  </listener>
+
+
+  <servlet-mapping>
+    <servlet-name>StuServlet</servlet-name>
+    <url-pattern>/stu</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>CouServlet</servlet-name>
+    <url-pattern>/Course</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>SelCouServlet</servlet-name>
+    <url-pattern>/selCou</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>ValidCodeServlet</servlet-name>
+    <url-pattern>/ValidCode</url-pattern>
+  </servlet-mapping>
+
+</web-app>

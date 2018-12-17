@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- namesapce:理解成实现类的全路径(包名+类名) -->
+<mapper namespace="com.wl.mapper.StuMapper" >
+
+<!--    通过账号和密码查询 -->
+       <select id="selByNamePwd" resultType="com.wl.pojo.Students">
+           select * from students where stuname=#{stuname} and stupwd=#{stupwd}
+       </select>
+<!--        通过姓名查询 -->
+       <select id="selByName" resultType="com.wl.pojo.Students">
+           select * from students where stuname=#{stuname}
+       </select>
+	    
+	    <insert id="insStu">
+	        insert into students values(#{stuid},#{stuname},#{pwd},#{sex},#{stuinstitute})
+	     </insert>
+<!-- 	     查询该用户是否存在 -->
+       <select id="selByRegStuid" resultType="com.wl.pojo.Students">
+           select * from students where stuid=#{stuid}
+       </select>
+</mapper>

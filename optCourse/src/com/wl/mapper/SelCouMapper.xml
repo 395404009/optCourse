@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- namesapce:理解成实现类的全路径(包名+类名) -->
+<mapper namespace="com.wl.mapper.SelCouMapper" >
+
+<!--    通过学生ID查询该学生的所有选课 -->
+       <select id="selCouByStuid" resultType="com.wl.pojo.Courses">
+            select * from courses where couid in (select couid from stucou where stuid=#{stuid})
+       </select>
+
+	
+</mapper>
